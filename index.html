@@ -129,6 +129,7 @@ nav a{padding:0 9px;font-size:14.5px}nav{gap:0}.brand b{white-space:nowrap}
 .where{color:var(--mute);font-size:15px}
 .talks{padding-left:20px;margin:0 0 16px}.talks li{margin-bottom:10px;max-width:75ch}
 .pill.aw{background:var(--teal);color:#fff}
+.gcap{font-size:14px;color:var(--mute);margin:10px 0 0}
 .gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;border-bottom:1px solid var(--line);background:var(--line)}
 .gbtn{all:unset;cursor:zoom-in;display:block;aspect-ratio:4/5;overflow:hidden}
 .gal.one{grid-template-columns:minmax(0,1fr)}.gal.one .gbtn{aspect-ratio:1/1}.gal.one .gbtn img{object-position:50% 0}
@@ -485,7 +486,7 @@ document.getElementById('conf').innerHTML=conf.map(r=>`<tr><td class="y">${r.y}<
 
 const news=[
  {id:"news-svk-2026",d:"19 November 2026",h:"Three awards at the Student Scientific Conference",
-  imgs:[{src:"photos/svk2026_team_v1.jpg",alt:"The lab team at SVK 2026"},{src:"photos/svk2026_svomova_v1.jpg",alt:"Barbora Švomová with her first-place diploma"},{src:"photos/svk2026_pecivova_v1.jpg",alt:"Martina Pečivová with her third-place diploma"}],
+  imgs:[{src:"photos/svk2026_team_v1.jpg",alt:"The lab team at SVK 2026",cap:"Front row (left to right): Bc. Matěj Řeháček, Ing. Denisa Lizoňová, Ph.D., Bc. Martina Pečivová. Back row: Bc. Lenka Vyhlídalová, Ing. Karolína Slonková, Bc. Barbora Švomová."},{src:"photos/svk2026_svomova_v1.jpg",alt:"Barbora Švomová with her first-place diploma"},{src:"photos/svk2026_pecivova_v1.jpg",alt:"Martina Pečivová with her third-place diploma"}],
   s:"Six of our students presented at SVK 2026. Barbora Švomová won first place, Martina Pečivová third place and Matěj Řeháček the PRO.MED.CS award.",
   b:`<p class="where">Student Scientific Conference (SVK 2026) · University of Chemistry and Technology Prague (UCT Prague), Faculty of Chemical Engineering · Prague, Czech Republic · 19 November 2026</p>
 <p>Our students presented their research at the annual Student Scientific Conference:</p>
@@ -505,7 +506,7 @@ const news=[
 <p>Over four years (January 2027 – December 2030) we will develop a long-acting injectable formulation of peptides for the treatment of obesity and metabolic syndrome, aiming to replace frequent injections with a single dose of lasting effect. The project is carried out at UCT Prague in collaboration with the <a href="https://maletinska.group.uochb.cz/en" target="_blank" rel="noopener">Lenka Maletínská Group</a> at the Institute of Organic Chemistry and Biochemistry (IOCB Prague) and the Institute of Physiology of the Czech Academy of Sciences (team of <a href="https://fgu.cas.cz/profil/rndr-jaroslav-kunes-drsc/" target="_blank" rel="noopener">RNDr. Jaroslav Kuneš, DrSc.</a>).</p>
 <p><a href="https://www.vscht.cz/novinky/152379" target="_blank" rel="noopener">Read the UCT Prague news article →</a></p>`}
 ];
-const gal=(n,k)=>`<div class="gal g${Math.min(n.imgs.length,3)}">${n.imgs.map((m,i)=>`<button type="button" class="gbtn" data-set="${k}" data-i="${i}" aria-label="Open photo: ${m.alt}"><img src="${m.src}" alt="${m.alt}" loading="lazy"></button>`).join("")}</div>`;
+const gal=(n,k)=>`<div class="gal g${Math.min(n.imgs.length,3)}">${n.imgs.map((m,i)=>`<button type="button" class="gbtn" data-set="${k}" data-i="${i}" aria-label="Open photo: ${m.alt}"><img src="${m.src}" alt="${m.alt}" loading="lazy"></button>`).join("")}</div>${n.imgs.filter(m=>m.cap).map(m=>`<p class="gcap">${n.imgs.length>1?"Team photo — ":""}${m.cap}</p>`).join("")}`;
 const cover=n=>n.imgs.length===1?`<img class="c1" src="${n.imgs[0].src}" alt="${n.imgs[0].alt}" loading="lazy">`:n.imgs.slice(0,3).map((m,i)=>`<img class="${i?'cs':'cm'}" src="${m.src}" alt="${m.alt}" loading="lazy">`).join("");
 const teaser=n=>`<a class="teaser" href="#${n.id}"><div class="cover n${Math.min(n.imgs.length,3)}">${cover(n)}</div><div class="b"><time>${n.d}</time><h3>${n.h}</h3><p>${n.s}</p><span class="more">Read more →</span></div></a>`;
 const full=(n,k)=>`<article class="full" id="${n.id}"><time>${n.d}</time><h2>${n.h}</h2>${gal(n,k)}<div class="body">${n.b}</div></article>`;
@@ -514,7 +515,7 @@ document.getElementById('news-home').innerHTML=news.slice(0,3).map(teaser).join(
 
 let lbSet=null,lbI=0;
 const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg');
-const lbShow=()=>{const m=news[lbSet].imgs[lbI];lbimg.src=m.src;lbimg.alt=m.alt;document.getElementById('lbcap').textContent=m.alt+' ('+(lbI+1)+'/'+news[lbSet].imgs.length+')';document.getElementById('lbfull').href=m.src};
+const lbShow=()=>{const m=news[lbSet].imgs[lbI];lbimg.src=m.src;lbimg.alt=m.alt;document.getElementById('lbcap').textContent=(m.cap||m.alt)+' ('+(lbI+1)+'/'+news[lbSet].imgs.length+')';document.getElementById('lbfull').href=m.src};
 document.addEventListener('click',e=>{const b=e.target.closest('.gbtn');if(!b)return;lbSet=+b.dataset.set;lbI=+b.dataset.i;lbShow();lb.classList.add('on');document.getElementById('lbx').focus()});
 const lbClose=()=>lb.classList.remove('on');
 const lbStep=d=>{const n=news[lbSet].imgs.length;lbI=(lbI+d+n)%n;lbShow()};
