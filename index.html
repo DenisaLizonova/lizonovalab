@@ -165,6 +165,7 @@ nav a{padding:0 9px;font-size:14.5px}nav{gap:0}.brand b{white-space:nowrap}
 .full h2{margin:6px 0 18px}
 .full .gal{border-radius:12px;overflow:hidden;border:0}
 .full .gal.g1{grid-template-columns:minmax(0,1fr);max-width:480px}.full .gal.g1 .gbtn{aspect-ratio:3/4}
+.full .gal.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .full .body{margin-top:20px}
 .where{color:var(--mute);font-size:15px}
 .talks{padding-left:20px;margin:0 0 16px}.talks li{margin-bottom:10px;max-width:75ch}
@@ -270,7 +271,7 @@ footer a{color:var(--mute)}
 <section class="view" id="v-news">
 <div class="band"><div class="wrap">
 <h1>News</h1>
-<p class="lead">Awards, conferences, grants and moments from the lab.</p>
+<p class="lead" id="news-lead">Awards, conferences, grants and moments from the lab.</p>
 <div id="news-all" style="margin-top:26px"></div>
 </div></div>
 </section>
@@ -598,13 +599,51 @@ const news=[
   s:"Our project on long-acting peptide formulations for cardiometabolic diseases was selected for funding by the Czech Health Research Council (2027–2030).",
   b:`<p>Ing. Denisa Lizoňová, Ph.D. received funding from the Czech Health Research Council (AZV ČR) for the project <i>Advanced sustained-release formulations of anorexigenic peptides: innovative systems for the treatment of cardiometabolic diseases</i> (NW27-08-00072), with total funding of CZK 13,368,000. It is one of 104 projects funded out of 611 proposals in this call.</p>
 <p>Over four years (January 2027 – December 2030) we will develop a long-acting injectable formulation of peptides for the treatment of obesity and metabolic syndrome, aiming to replace frequent injections with a single dose of lasting effect. The project is carried out at UCT Prague in collaboration with the <a href="https://maletinska.group.uochb.cz/en" target="_blank" rel="noopener">Lenka Maletínská Group</a> at the Institute of Organic Chemistry and Biochemistry (IOCB Prague) and the Institute of Physiology of the Czech Academy of Sciences (team of <a href="https://fgu.cas.cz/profil/rndr-jaroslav-kunes-drsc/" target="_blank" rel="noopener">RNDr. Jaroslav Kuneš, DrSc.</a>).</p>
-<p><a href="https://www.vscht.cz/novinky/152379" target="_blank" rel="noopener">Read the UCT Prague news article →</a></p>`}
+<p><a href="https://www.vscht.cz/novinky/152379" target="_blank" rel="noopener">Read the UCT Prague news article →</a></p>`},
+ {id:"news-ijp-paper-2026",d:"June 2026",h:"First first-author paper for Karolína Slonková",
+  imgs:[{src:"photos/ijp2026_graphical_abstract_v1.jpg",alt:"Graphical abstract: a microcapsule with a molten core releasing its drug after a radiofrequency impulse, the temperature profile around the depot, and bacterial viability after repeated triggering"}],
+  s:"Karolína Slonková's first paper as first author appeared in the International Journal of Pharmaceutics, on a drug depot that can be triggered on demand by a radiofrequency field.",
+  b:`<p>Karolína Slonková published her first paper as first author in the <i>International Journal of Pharmaceutics</i>. The work addresses two connected problems of local therapy: how to deliver a drug precisely where it is needed, and how to avoid the uncontrolled release that, in the case of antibiotics, contributes to bacterial resistance.</p>
+<p>The depot described in the paper consists of microcapsules that retain their cargo until they are exposed to an external radiofrequency field. The impulse melts the core of the capsule and the drug is released; once the field is switched off, the release stops, so the dose can be repeated as required. The system was tested in an <i>ex vivo</i> tissue model, which made it possible to follow the release and the effect on bacteria under conditions much closer to the real application than a simple buffer experiment.</p>
+<p>The paper was written with co-authors from UCT Prague and supervised by Ing. Denisa Lizoňová, Ph.D. and prof. František Štěpánek.</p>
+<p><a href="https://doi.org/10.1016/j.ijpharm.2026.127115" target="_blank" rel="noopener">Read the paper →</a></p>`},
+ {id:"news-krc-visit-2026",d:"6 May 2026",h:"Visit to the Maletínská group",
+  imgs:[{src:"photos/krc2026_lizonova_v1.jpg",alt:"Denisa Lizoňová holding a laboratory mouse during the visit"},{src:"photos/krc2026_mouse1_v1.jpg",alt:"An obese mouse model used in cardiometabolic research"},{src:"photos/krc2026_mouse2_v1.jpg",alt:"The animal facility during the visit"}],
+  s:"Denisa Lizoňová visited the group of Lenka Maletínská to see the animal models used in our joint work on peptide formulations — including Jaroušek, an obese mouse.",
+  b:`<p>Denisa Lizoňová visited the group of our collaborator Lenka Maletínská at their facility in Krč, where the animal experiments for our joint projects are carried out. The highlight of the visit was meeting Jaroušek, an obese mouse.</p>
+<p>Models of this kind are used to study cardiometabolic disease and to test treatments for diabetes, obesity and neurodegenerative conditions. For us they are the point at which formulation work meets physiology: a depot or a carrier that performs well <i>in vitro</i> still has to prove that it releases its cargo at the right rate in a living organism. All animal work takes place at the partner institute, under their approval and expertise.</p>`},
+ {id:"news-science-slam-2026",d:"28 April 2026",h:"Tibor Malinský at Science Slam",
+  imgs:[{src:"photos/slam2026_malinsky1_v1.jpg",alt:"Tibor Malinský presenting at Science Slam in front of a drawing of a lung model"},{src:"photos/slam2026_malinsky2_v1.jpg",alt:"Tibor Malinský during his Science Slam talk"}],
+  s:"Tibor Malinský took our inhalation research to the Science Slam stage at Uhelna and explained to a general audience how inhaled drugs are tested on cell models.",
+  b:`<p class="where">Science Slam · UCT Prague · Uhelna, Prague · 28 April 2026</p>
+<p>Tibor Malinský presented his project on inhalational drug delivery at Science Slam, an evening of short popular-science performances by students and staff of UCT Prague. He explained why the size of an inhaled particle decides where in the lungs it ends up, and how drugs can be tested on cell models cultivated at the air–liquid interface instead of being added to cells in a dish.</p>
+<p>It is a difficult thing to do well — a research project compressed into a few minutes, for an audience that has not read the paper — and the audience loved it.</p>`},
+ {id:"news-bioimplantology-2026",d:"15 April 2026",h:"Bioimplantology conference in Znojmo",
+  imgs:[{src:"photos/bioimpl2026_talk2_v1.jpg",alt:"Denisa Lizoňová giving a talk at the Bioimplantology conference"},{src:"photos/bioimpl2026_talk1_v1.jpg",alt:"A presentation during the conference programme"},{src:"photos/bioimpl2026_posters_v1.jpg",alt:"Discussion in the poster session"},{src:"photos/bioimpl2026_podyji_v1.jpg",alt:"A trail in the Podyjí National Park"},{src:"photos/bioimpl2026_run_v1.jpg",alt:"Denisa Lizoňová and Kateřina Slaninová on a run in the Podyjí National Park"}],
+  s:"Denisa Lizoňová and her PhD students presented radiofrequency-triggered antibiotic depots and advanced cell culture models at the Bioimplantology conference — with a long run in the Podyjí National Park in between.",
+  b:`<p class="where">Bioimplantology 2026 · Znojmo, Czech Republic · April 2026</p>
+<p>Denisa Lizoňová attended the Bioimplantology conference in Znojmo together with her PhD students Kateřina Slaninová and Karolína Slonková. They presented two lines of our work: radiofrequency-triggered antibiotic depots, and advanced cell culture models for drug research.</p>
+<p>The discussions brought out several ideas worth following up, and the meeting was a good occasion to catch up with colleagues and to meet new people. Somewhere in between the group also managed a long run in the Podyjí National Park.</p>`},
+ {id:"news-pbp-2026",d:"24 March 2026",h:"PBP World Meeting in Prague",
+  imgs:[{src:"photos/pbp2026_group_v1.jpg",alt:"The group at the PBP World Meeting in Prague"},{src:"photos/pbp2026_students_v1.jpg",alt:"Students of the group at the congress venue"},{src:"photos/pbp2026_students2_v1.jpg",alt:"Students of the group outside the congress venue"},{src:"photos/pbp2026_poster1_v1.jpg",alt:"Poster presentation at the PBP World Meeting"},{src:"photos/pbp2026_poster2_v1.jpg",alt:"Poster presentation at the PBP World Meeting"},{src:"photos/pbp2026_poster3_v1.jpg",alt:"Poster presentation at the PBP World Meeting"},{src:"photos/pbp2026_poster4_v1.jpg",alt:"Poster presentation at the PBP World Meeting"},{src:"photos/pbp2026_band1_v1.jpg",alt:"The band Back in the Game performing at the gala dinner"},{src:"photos/pbp2026_band2_v1.jpg",alt:"The band performing at the gala dinner"},{src:"photos/pbp2026_band3_v1.jpg",alt:"Denisa Lizoňová singing at the gala dinner"},{src:"photos/pbp2026_audience_v1.jpg",alt:"The audience at the gala dinner"}],
+  s:"The whole group took part in the 15th PBP World Meeting in Prague — helping to organise it, presenting their work, and, at the gala dinner, playing it.",
+  b:`<p class="where">15th World Congress on Pharmaceutics, Biopharmaceutics and Pharmaceutical Technology (PBP World Meeting 2026) · Prague, Czech Republic · March 2026</p>
+<p>The 15th PBP World Meeting brought together scientists working on pharmaceutics and pharmaceutical technology from across the field. Our group was involved on several levels: Denisa Lizoňová and her students helped with the organisation and preparation of the congress, presented their own work and took part in the discussions throughout the programme. Thanks go to Karolína Slonková, Kateřina Slaninová, Lenka Vyhlídalová and Anna Reiserová for their work.</p>
+<p>The congress also had an unusual personal highlight: Denisa performed at the gala dinner with her band, Back in the Game. Contributing to the same event both scientifically and musically was a rare combination — and, by her account, scientists make an excellent audience.</p>
+<p><a href="https://worldmeeting.org/" target="_blank" rel="noopener">PBP World Meeting →</a></p>`},
+ {id:"news-via-chimica-2024",d:"2024",h:"Karolína Slonková receives the Via Chimica award",
+  imgs:[{src:"photos/viachimica2024_slonkova_v1.jpg",alt:"Karolína Slonková in the laboratory"}],
+  s:"Karolína Slonková won the Via Chimica award for young chemical talents for her Bachelor's thesis on magnetic nanoparticles used to fight bacteria more effectively.",
+  b:`<p>Karolína Slonková was named the laureate of the Via Chimica award for 2024. The prize for young chemical talents is awarded by the Experientia Foundation in cooperation with the Learned Society of the Czech Republic, and she received it for her Bachelor's thesis, carried out in our group.</p>
+<p>Medicine today can place a drug directly where it is needed, using gels, particles or films implanted in the body — for instance when a joint is replaced or a dental implant is inserted. The difficulty is that such carriers release their cargo without control, and in the case of antibiotics an insufficient local dose can contribute to bacterial resistance. Her thesis took a different route: magnetic nanoparticles incorporated into the carrier allow the drug to be dosed deliberately, and repeatedly, in response to an external magnetic impulse.</p>
+`}
 ];
 const gal=(n,k)=>`<div class="gal g${Math.min(n.imgs.length,3)}">${n.imgs.map((m,i)=>`<button type="button" class="gbtn" data-set="${k}" data-i="${i}" aria-label="Open photo: ${m.alt}"><img src="${m.src}" alt="${m.alt}" loading="lazy"></button>`).join("")}</div>${n.imgs.filter(m=>m.cap).map(m=>`<p class="gcap">${n.imgs.length>1?"Team photo — ":""}${m.cap}</p>`).join("")}`;
 const cover=n=>n.imgs.length===1?`<img class="c1" src="${n.imgs[0].src}" alt="${n.imgs[0].alt}" loading="lazy">`:n.imgs.slice(0,3).map((m,i)=>`<img class="${i?'cs':'cm'}" src="${m.src}" alt="${m.alt}" loading="lazy">`).join("");
 const teaser=n=>`<a class="teaser" href="#${n.id}"><div class="cover n${Math.min(n.imgs.length,3)}">${cover(n)}</div><div class="b"><time>${n.d}</time><h3>${n.h}</h3><p>${n.s}</p><span class="more">Read more →</span></div></a>`;
 const full=(n,k)=>`<article class="full" id="${n.id}"><time>${n.d}</time><h2>${n.h}</h2>${gal(n,k)}<div class="body">${n.b}</div></article>`;
-document.getElementById('news-all').innerHTML=news.map(full).join('');
+const newsList=()=>`<div class="news">${news.map(teaser).join('')}</div>`;
+const newsOne=k=>`<a class="backlink" href="#news">&larr; News</a>`+full(news[k],k);
 document.getElementById('news-home').innerHTML=news.slice(0,3).map(teaser).join('');
 
 let lbSet=null,lbI=0;
@@ -641,7 +680,10 @@ const show=()=>{const h=location.hash.slice(1);
  const sub=tp.s?`<section class="subs"><h2>Subprojects</h2>${tp.s.map(x=>`<div class="sub${x.wide?' wide':''}" id="sub-${x.id}"><img src="${x.img}" alt="${x.alt}"><div><h3>${x.h}</h3><div class="body">${x.p}</div><div class="whoon" style="margin:14px 0 0"><a href="#people-${slug(x.w)}">${x.w}</a></div></div></div>`).join('')}</section>`:'';
  document.getElementById('topic-full').innerHTML=`<article class="full" style="border-bottom:0;margin-bottom:0"><h1>${tp.t||tp.h}</h1>${who}${snav}<div class="body">${tp.b}</div>${sub}</article>`;}
  const pers=h.startsWith('people-')&&document.getElementById('p-'+h.slice(7));
- const art=(h.startsWith('news-')||h==='theses')&&document.getElementById(h);const v=tp?'topic':pers?'people':h==='conferences'?'publications':h==='theses'?'leader':art?'news':views.includes(h)?h:'home';const nv=v==='topic'?'research':v;
+ const ni=h.startsWith('news-')?news.findIndex(n=>n.id===h):-1;
+ if(ni>=0){document.getElementById('news-all').innerHTML=newsOne(ni);document.getElementById('news-lead').style.display='none'}
+ else if(h==='news'||h===''||!h){document.getElementById('news-all').innerHTML=newsList();document.getElementById('news-lead').style.display=''}
+ const art=h==='theses'&&document.getElementById(h);const v=tp?'topic':pers?'people':h==='conferences'?'publications':h==='theses'?'leader':ni>=0?'news':views.includes(h)?h:'home';const nv=v==='topic'?'research':v;
  for(const x of views){document.getElementById('v-'+x).classList.toggle('on',x===v)}
  for(const a of document.querySelectorAll('nav a'))a.toggleAttribute('aria-current',a.getAttribute('href')==='#'+nv),a.getAttribute('href')==='#'+nv?a.setAttribute('aria-current','page'):null;
  if(pers)requestAnimationFrame(()=>{pers.scrollIntoView({block:'center'});pers.classList.add('hl');setTimeout(()=>pers.classList.remove('hl'),2200)});
