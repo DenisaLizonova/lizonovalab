@@ -166,6 +166,10 @@ nav a{padding:0 9px;font-size:14.5px}nav{gap:0}.brand b{white-space:nowrap}
 .full .gal{border-radius:12px;overflow:hidden;border:0}
 .full .gal.g1{grid-template-columns:minmax(0,1fr);max-width:480px}.full .gal.g1 .gbtn{aspect-ratio:3/4}
 .full .gal.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.full .gal.fig{max-width:760px;border:1px solid var(--line);background:#fff}
+.full .gal.fig .gbtn{aspect-ratio:auto}
+.full .gal.fig .gbtn img{height:auto;object-fit:contain;background:#fff}
+.full .gal.fig .gbtn:hover img{transform:none}
 .full .body{margin-top:20px}
 .where{color:var(--mute);font-size:15px}
 .talks{padding-left:20px;margin:0 0 16px}.talks li{margin-bottom:10px;max-width:75ch}
@@ -600,7 +604,7 @@ const news=[
   b:`<p>Ing. Denisa Lizoňová, Ph.D. received funding from the Czech Health Research Council (AZV ČR) for the project <i>Advanced sustained-release formulations of anorexigenic peptides: innovative systems for the treatment of cardiometabolic diseases</i> (NW27-08-00072), with total funding of CZK 13,368,000. It is one of 104 projects funded out of 611 proposals in this call.</p>
 <p>Over four years (January 2027 – December 2030) we will develop a long-acting injectable formulation of peptides for the treatment of obesity and metabolic syndrome, aiming to replace frequent injections with a single dose of lasting effect. The project is carried out at UCT Prague in collaboration with the <a href="https://maletinska.group.uochb.cz/en" target="_blank" rel="noopener">Lenka Maletínská Group</a> at the Institute of Organic Chemistry and Biochemistry (IOCB Prague) and the Institute of Physiology of the Czech Academy of Sciences (team of <a href="https://fgu.cas.cz/profil/rndr-jaroslav-kunes-drsc/" target="_blank" rel="noopener">RNDr. Jaroslav Kuneš, DrSc.</a>).</p>
 <p><a href="https://www.vscht.cz/novinky/152379" target="_blank" rel="noopener">Read the UCT Prague news article →</a></p>`},
- {id:"news-ijp-paper-2026",d:"June 2026",h:"First first-author paper for Karolína Slonková",
+ {id:"news-ijp-paper-2026",fig:1,d:"June 2026",h:"First first-author paper for Karolína Slonková",
   imgs:[{src:"photos/ijp2026_graphical_abstract_v1.jpg",alt:"Graphical abstract: a microcapsule with a molten core releasing its drug after a radiofrequency impulse, the temperature profile around the depot, and bacterial viability after repeated triggering"}],
   s:"Karolína Slonková's first paper as first author appeared in the International Journal of Pharmaceutics, on a drug depot that can be triggered on demand by a radiofrequency field.",
   b:`<p>Karolína Slonková published her first paper as first author in the <i>International Journal of Pharmaceutics</i>. The work addresses two connected problems of local therapy: how to deliver a drug precisely where it is needed, and how to avoid the uncontrolled release that, in the case of antibiotics, contributes to bacterial resistance.</p>
@@ -638,7 +642,7 @@ const news=[
 <p>Medicine today can place a drug directly where it is needed, using gels, particles or films implanted in the body — for instance when a joint is replaced or a dental implant is inserted. The difficulty is that such carriers release their cargo without control, and in the case of antibiotics an insufficient local dose can contribute to bacterial resistance. Her thesis took a different route: magnetic nanoparticles incorporated into the carrier allow the drug to be dosed deliberately, and repeatedly, in response to an external magnetic impulse.</p>
 `}
 ];
-const gal=(n,k)=>`<div class="gal g${Math.min(n.imgs.length,3)}">${n.imgs.map((m,i)=>`<button type="button" class="gbtn" data-set="${k}" data-i="${i}" aria-label="Open photo: ${m.alt}"><img src="${m.src}" alt="${m.alt}" loading="lazy"></button>`).join("")}</div>${n.imgs.filter(m=>m.cap).map(m=>`<p class="gcap">${n.imgs.length>1?"Team photo — ":""}${m.cap}</p>`).join("")}`;
+const gal=(n,k)=>`<div class="gal g${Math.min(n.imgs.length,3)}${n.fig?' fig':''}">${n.imgs.map((m,i)=>`<button type="button" class="gbtn" data-set="${k}" data-i="${i}" aria-label="Open photo: ${m.alt}"><img src="${m.src}" alt="${m.alt}" loading="lazy"></button>`).join("")}</div>${n.imgs.filter(m=>m.cap).map(m=>`<p class="gcap">${n.imgs.length>1?"Team photo — ":""}${m.cap}</p>`).join("")}`;
 const cover=n=>n.imgs.length===1?`<img class="c1" src="${n.imgs[0].src}" alt="${n.imgs[0].alt}" loading="lazy">`:n.imgs.slice(0,3).map((m,i)=>`<img class="${i?'cs':'cm'}" src="${m.src}" alt="${m.alt}" loading="lazy">`).join("");
 const teaser=n=>`<a class="teaser" href="#${n.id}"><div class="cover n${Math.min(n.imgs.length,3)}">${cover(n)}</div><div class="b"><time>${n.d}</time><h3>${n.h}</h3><p>${n.s}</p><span class="more">Read more →</span></div></a>`;
 const full=(n,k)=>`<article class="full" id="${n.id}"><time>${n.d}</time><h2>${n.h}</h2>${gal(n,k)}<div class="body">${n.b}</div></article>`;
