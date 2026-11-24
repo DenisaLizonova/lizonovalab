@@ -100,6 +100,13 @@ p{margin:0 0 14px;max-width:68ch}
 .sub{display:grid;grid-template-columns:320px 1fr;gap:30px;align-items:start;margin-bottom:42px}
 .sub:last-child{margin-bottom:0}
 .sub.wide{grid-template-columns:1fr;gap:22px}
+.sub{scroll-margin-top:90px}
+.subnav{border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:0 0 30px;background:var(--card,transparent)}
+.subnav span{display:block;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);font-weight:600;margin-bottom:10px}
+.subnav ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.subnav a{color:var(--teal);text-decoration:none;font-weight:600;font-size:16px;line-height:1.35}
+.subnav a:hover{text-decoration:underline}
+.subnav a::after{content:" \2193";font-weight:400}
 .sub img{width:100%;border-radius:12px;border:1px solid var(--line);display:block}
 .sub h3{font-size:19px;margin:0 0 12px;line-height:1.35}
 @media(max-width:760px){.sub{grid-template-columns:1fr;gap:16px}.sub img{max-width:420px}}
@@ -625,12 +632,14 @@ const hdr=document.querySelector('header'),mb=document.getElementById('menuBtn')
 mb.addEventListener('click',()=>{const o=hdr.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
 document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click',()=>{hdr.classList.remove('open');mb.setAttribute('aria-expanded',false)}));
 const views=['home','news','people','leader','collaborations','research','topic','publications','contact'];
+document.addEventListener('click',ev=>{const a=ev.target.closest('a[data-sub]');if(!a)return;ev.preventDefault();const el=document.getElementById(a.dataset.sub);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})});
 const show=()=>{const h=location.hash.slice(1);
  const tp=h.startsWith('topic-')&&topics.find(t=>t.id&&'topic-'+t.id===h);
  if(tp){const on=[...phd,...st,...ex].filter(p=>p.n&&(p.t||'').includes('#topic-'+tp.id));
  const who=on.length?`<div class="whoon"><span>On this project:</span>${on.map(p=>`<a href="#people-${slug(p.n)}">${p.n}</a>`).join('')}</div>`:'';
+ const snav=tp.s?`<div class="subnav"><span>Subprojects</span><ul>${tp.s.map(x=>`<li><a href="#sub-${x.id}" data-sub="sub-${x.id}">${x.h}</a></li>`).join('')}</ul></div>`:'';
  const sub=tp.s?`<section class="subs"><h2>Subprojects</h2>${tp.s.map(x=>`<div class="sub${x.wide?' wide':''}" id="sub-${x.id}"><img src="${x.img}" alt="${x.alt}"><div><h3>${x.h}</h3><div class="body">${x.p}</div><div class="whoon" style="margin:14px 0 0"><a href="#people-${slug(x.w)}">${x.w}</a></div></div></div>`).join('')}</section>`:'';
- document.getElementById('topic-full').innerHTML=`<article class="full" style="border-bottom:0;margin-bottom:0"><h1>${tp.t||tp.h}</h1>${who}<div class="body">${tp.b}</div>${sub}</article>`;}
+ document.getElementById('topic-full').innerHTML=`<article class="full" style="border-bottom:0;margin-bottom:0"><h1>${tp.t||tp.h}</h1>${who}${snav}<div class="body">${tp.b}</div>${sub}</article>`;}
  const pers=h.startsWith('people-')&&document.getElementById('p-'+h.slice(7));
  const art=(h.startsWith('news-')||h==='theses')&&document.getElementById(h);const v=tp?'topic':pers?'people':h==='conferences'?'publications':h==='theses'?'leader':art?'news':views.includes(h)?h:'home';const nv=v==='topic'?'research':v;
  for(const x of views){document.getElementById('v-'+x).classList.toggle('on',x===v)}
