@@ -144,6 +144,11 @@ table.th td:nth-child(2){white-space:nowrap;font-weight:600}
 .cc .links .more{margin-top:0}
 nav a{padding:0 9px;font-size:14.5px}nav{gap:0}.brand b{white-space:nowrap}
 .news{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
+#news-home{grid-template-columns:minmax(0,780px)}
+#news-home .teaser{flex-direction:row}
+#news-home .cover{flex:0 0 46%;aspect-ratio:4/3;border-bottom:0;border-right:1px solid var(--line)}
+#news-home .b{display:flex;flex-direction:column;justify-content:center}
+@media(max-width:720px){#news-home .teaser{flex-direction:column}#news-home .cover{flex:auto;aspect-ratio:16/10;border-right:0;border-bottom:1px solid var(--line)}}
 .post{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column}
 .ph{aspect-ratio:16/10;background:var(--soft);display:grid;place-items:center;color:var(--mute);font-size:13px;border-bottom:1px solid var(--line)}
 .ph svg{width:34px;height:34px;opacity:.6}
@@ -655,7 +660,7 @@ const teaser=n=>`<a class="teaser" href="#${n.id}"><div class="cover n${Math.min
 const full=(n,k)=>`<article class="full" id="${n.id}"><time>${n.d}</time><h2>${n.h}</h2>${gal(n,k)}<div class="body">${n.b}</div></article>`;
 const newsList=()=>`<div class="news">${news.map(teaser).join('')}</div>`;
 const newsOne=k=>`<a class="backlink" href="#news">&larr; News</a>`+full(news[k],k);
-document.getElementById('news-home').innerHTML=news.slice(0,3).map(teaser).join('');
+document.getElementById('news-home').innerHTML=news.slice(0,1).map(teaser).join('');
 
 let lbSet=null,lbI=0;
 const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg');
