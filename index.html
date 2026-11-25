@@ -172,6 +172,8 @@ nav a{padding:0 9px;font-size:14.5px}nav{gap:0}.brand b{white-space:nowrap}
 .full .gal.g1{grid-template-columns:minmax(0,1fr);max-width:480px}.full .gal.g1 .gbtn{aspect-ratio:3/4}
 .full .gal.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .full .gal.fig{max-width:760px;border:1px solid var(--line);background:#fff}
+.full .words{border-left:3px solid var(--teal);padding-left:20px;margin:22px 0}
+.full .words p:last-child{margin-bottom:0}
 .full .gal.fig .gbtn{aspect-ratio:auto}
 .full .gal.fig .gbtn img{height:auto;object-fit:contain;background:#fff}
 .full .gal.fig .gbtn:hover img{transform:none}
@@ -588,6 +590,18 @@ if(conf.length>5){const cb=document.getElementById('confMore');cb.hidden=false;c
  cb.addEventListener('click',()=>{const o=document.getElementById('conf').classList.toggle('open');cb.textContent=o?'Show fewer contributions \u2191':'Show all contributions \u2193';if(!o)document.getElementById('conferences').scrollIntoView()})}
 
 const news=[
+ {id:"news-machac-erasmus-2026",d:"25 November 2026",h:"Filip Macha\u010d on Erasmus in Lisbon",
+  imgs:[],
+  s:"Filip Macha\u010d is spending the semester at Instituto Superior T\u00e9cnico in Lisbon, where he is gaining knowledge and skills he will bring back to his research.",
+  b:`<p>Filip Macha\u010d, a diploma student in our group, is spending this semester on an Erasmus exchange at Instituto Superior T\u00e9cnico in Lisbon. Besides the courses he has chosen with his diploma project in mind, he is working in an international team and picking up skills that he will bring back to the laboratory.</p>
+<p>And here is his assessment of the experience, in Filip's own words:</p>
+<div class="words">
+<p>I have been on Erasmus at Instituto Superior T\u00e9cnico in Lisbon since September, and it is something I had been looking forward to for a long time. Living in Lisbon, studying in a foreign language and experiencing a different academic environment. The teaching style here is quite different from UCT. Topics are often simplified, but they are explained very precisely and thoroughly. There are fewer lab classes, and when we do have one, everything is already prepared for us.</p>
+<p>For my diploma thesis, the most useful course was Design of Biomolecules. It helped me explore how our system can be stabilized, especially through the different types of non-covalent interactions, and it gave me new perspectives that I can apply directly in my research.</p>
+<p>Most of my workload goes into the Chemical Engineering Project, where our international team is designing a complete green ammonia plant in Aspen Plus. The use of AI tools is strongly encouraged here, and it helped us a lot with the complex simulations. I believe this is the direction engineering practice is heading. The project has also improved my soft skills: presenting in English, communicating within an international team and dividing and coordinating work among people with different backgrounds.</p>
+<p>One thing I have come to appreciate from abroad is how strong UCT's connections with industry are. Internships, the process design project and SVK give us practical experience that is not so easy to get here. I also see a good balance at UCT between teaching and research, while at IST professors focus more on teaching.</p>
+<p>Outside of school, Portugal is a beautiful country. Together with my girlfriend, I have travelled to Madeira, Porto, Sintra and many other places, and we are now planning a trip to the Azores. It gives you a completely different perspective on the Czech Republic and on what we have back home.</p>
+</div>`},
  {id:"news-svk-2026",d:"19 November 2026",h:"Awards at the Student Scientific Conference",
   imgs:[{src:"photos/svk2026_team_v1.jpg",alt:"The lab team at SVK 2026",cap:"Team photo — front row (left to right): Bc. Matěj Řeháček, Ing. Denisa Lizoňová, Ph.D., Bc. Martina Pečivová. Back row: Bc. Lenka Vyhlídalová, Ing. Karolína Slonková, Bc. Barbora Švomová."},{src:"photos/svk2026_svomova_v1.jpg",alt:"Barbora Švomová with her first-place diploma"},{src:"photos/svk2026_pecivova_v1.jpg",alt:"Martina Pečivová with her third-place diploma"}],
   s:"Six of our students presented at SVK 2026. Barbora Švomová won first place and Martina Pečivová third place, and four of our students received awards from the conference sponsors.",
@@ -656,8 +670,8 @@ const news=[
 ];
 const gal=(n,k)=>`<div class="gal g${Math.min(n.imgs.length,3)}${n.fig?' fig':''}">${n.imgs.map((m,i)=>`<button type="button" class="gbtn" data-set="${k}" data-i="${i}" aria-label="Open photo: ${m.alt}"><img src="${m.src}" alt="${m.alt}" loading="lazy"></button>`).join("")}</div>${n.imgs.filter(m=>m.cap).map(m=>`<p class="gcap">${m.cap}</p>`).join("")}`;
 const cover=n=>n.imgs.length===1?`<img class="c1" src="${n.imgs[0].src}" alt="${n.imgs[0].alt}" loading="lazy">`:n.imgs.slice(0,3).map((m,i)=>`<img class="${i?'cs':'cm'}" src="${m.src}" alt="${m.alt}" loading="lazy">`).join("");
-const teaser=n=>`<a class="teaser" href="#${n.id}"><div class="cover n${Math.min(n.imgs.length,3)}">${cover(n)}</div><div class="b"><time>${n.d}</time><h3>${n.h}</h3><p>${n.s}</p><span class="more">Read more →</span></div></a>`;
-const full=(n,k)=>`<article class="full" id="${n.id}"><time>${n.d}</time><h2>${n.h}</h2>${gal(n,k)}<div class="body">${n.b}</div></article>`;
+const teaser=n=>`<a class="teaser" href="#${n.id}">${n.imgs.length?`<div class="cover n${Math.min(n.imgs.length,3)}">${cover(n)}</div>`:''}<div class="b"><time>${n.d}</time><h3>${n.h}</h3><p>${n.s}</p><span class="more">Read more →</span></div></a>`;
+const full=(n,k)=>`<article class="full" id="${n.id}"><time>${n.d}</time><h2>${n.h}</h2>${n.imgs.length?gal(n,k):''}<div class="body">${n.b}</div></article>`;
 const newsList=()=>`<div class="news">${news.map(teaser).join('')}</div>`;
 const newsOne=k=>`<a class="backlink" href="#news">&larr; News</a>`+full(news[k],k);
 document.getElementById('news-home').innerHTML=news.slice(0,1).map(teaser).join('');
