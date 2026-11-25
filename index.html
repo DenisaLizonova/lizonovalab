@@ -380,7 +380,7 @@ footer a{color:var(--mute)}
 <!-- RESEARCH -->
 <section class="view" id="v-research">
 <div class="band"><div class="wrap">
-<h1>Research</h1>
+<h1>Research areas</h1>
 <p class="lead">From the molecule to the tissue: we formulate the carrier, characterise how it releases its cargo, and test it in models that resemble the target organ.</p>
 <div class="topics" id="topics" style="margin-top:28px"></div>
 <h2 id="grants" style="margin-top:56px;scroll-margin-top:90px">Grants and projects</h2>
@@ -465,7 +465,7 @@ footer a{color:var(--mute)}
 <!-- RESEARCH TOPIC DETAIL -->
 <section class="view" id="v-topic">
 <div class="band"><div class="wrap">
-<a class="backlink" href="#research">&larr; Research</a>
+<a class="backlink" href="#research">&larr; Research areas</a>
 <div id="topic-full"></div>
 </div></div>
 </section>
@@ -558,7 +558,7 @@ const topics=[
    {id:"nebulization",wide:1,img:"photos/sub_nebulization_v1.jpg",alt:"Regional deposition of inhaled particles in the lungs as a function of droplet size, a phospholipid-stabilized nanocrystal and an aerosol droplet carrying nanocrystals, and a schematic of the exposure chamber above cell inserts",h:"Nebulization of phospholipid-stabilized drug nanocrystals and <i>in vitro</i> aerosol exposure",w:"Bc. Filip Macha\u010d",p:`<p>This project focuses on phospholipid-stabilized drug nanocrystal formulations and on how the nebulization process shapes the resulting aerosol. We investigate the influence of formulation parameters, such as stabilizer composition, drug concentration and nanocrystal size, as well as of the nebulization technology and its operating conditions, on the aerosol droplet size distribution, the output rate and the delivered dose. A key question is whether the nanocrystals remain stable during nebulization, that is, whether their size, aggregation state and drug content are preserved after aerosolization.</p>
 <p>The formulations are characterized by dynamic light scattering, spectrophotometry and confocal microscopy, with curcumin used as a model poorly water-soluble drug. To link the properties of the aerosol with the biological response, an exposure chamber is also being developed, which allows the nebulized formulations to be deposited directly onto lung cell models cultivated at the air\u2013liquid interface.</p>`}
   ]},
- {id:"gel",i:ic.gel,h:"Long-acting depot systems",t:"Long-acting depot systems for parenteral and local drug delivery",p:"Depot formulations that release their cargo locally or into the systemic circulation over long periods, based on hydrogels from natural polymers and on biodegradable polymer microparticles. Into these matrices we encapsulate various types of drug carriers, including drug nanocrystals and other nanoparticles, which allows both small molecules and larger biomolecules such as peptides to be delivered. Our aim is a depot that maintains a therapeutic dose continuously for months instead of repeated daily or weekly injections. The topic currently comprises three subprojects.",
+ {id:"gel",i:ic.gel,h:"Long-acting depot systems",t:"Long-acting depot systems for parenteral and local drug delivery",p:"Depot formulations that release their cargo locally or into the systemic circulation over long periods, based on hydrogels from natural polymers and on biodegradable polymer microparticles. Into these matrices we encapsulate various types of drug carriers, including drug nanocrystals and other nanoparticles, which allows both small molecules and larger biomolecules such as peptides to be delivered. Our aim is a depot that maintains a therapeutic dose continuously for months instead of repeated daily or weekly injections. This research area currently comprises three projects.",
   b:`<p>Depot systems are a versatile platform for prolonged drug delivery and can be adapted to a range of administration routes, from subcutaneous implants and injectables to ocular applications. We work with two complementary formats: hydrogels based on natural polymers, which can be formed <i>in situ</i> at the site of administration, and microparticles prepared from biodegradable polymers, which can be injected as a suspension. Both are chosen for their biocompatibility and for the possibility of tuning their degradation in a physiological environment, since it is the degradation of the matrix that largely governs the release.</p>
 <p>Into these matrices we encapsulate different types of drug carriers, including drug nanocrystals and other nanoparticles, or the active substance itself. Combining a carrier with a degrading matrix gives two levels of control over the release process and makes it possible to work with very different cargoes: from small molecules, such as anti-inflammatory or anticancer drugs, to larger biomolecules such as peptides. Depending on the design and the site of administration, such a depot can act locally at the target tissue or serve as a reservoir that supplies the drug to the systemic circulation.</p>
 <p>A substantial part of our current work is devoted to peptide therapeutics. We are developing a depot system intended for subcutaneous administration that would release anorexigenic peptides, a class of compounds studied for the treatment of obesity and metabolic disorders, with further potential in cardiometabolic and neurodegenerative conditions, including Alzheimer's disease. This part of our work is carried out within the project <a href="#grants">NW27-08-00072</a>, supported by the Czech Health Research Council (AZV ČR).</p>
@@ -692,8 +692,8 @@ const show=()=>{const h=location.hash.slice(1);
  const tp=h.startsWith('topic-')&&topics.find(t=>t.id&&'topic-'+t.id===h);
  if(tp){const on=[...phd,...st,...ex].filter(p=>p.n&&(p.t||'').includes('#topic-'+tp.id));
  const who=on.length?`<div class="whoon"><span>On this project:</span>${on.map(p=>`<a href="#people-${slug(p.n)}">${p.n}</a>`).join('')}</div>`:'';
- const snav=tp.s?`<div class="subnav"><span>Subprojects</span><ul>${tp.s.map(x=>`<li><a href="#sub-${x.id}" data-sub="sub-${x.id}">${x.h}</a></li>`).join('')}</ul></div>`:'';
- const sub=tp.s?`<section class="subs"><h2>Subprojects</h2>${tp.s.map(x=>`<div class="sub${x.wide?' wide':''}" id="sub-${x.id}"><img src="${x.img}" alt="${x.alt}"><div><h3>${x.h}</h3><div class="body">${x.p}</div>${x.w?`<div class="whoon" style="margin:14px 0 0"><a href="#people-${slug(x.w)}">${x.w}</a></div>`:''}</div></div>`).join('')}</section>`:'';
+ const snav=tp.s?`<div class="subnav"><span>Projects</span><ul>${tp.s.map(x=>`<li><a href="#sub-${x.id}" data-sub="sub-${x.id}">${x.h}</a></li>`).join('')}</ul></div>`:'';
+ const sub=tp.s?`<section class="subs"><h2>Projects</h2>${tp.s.map(x=>`<div class="sub${x.wide?' wide':''}" id="sub-${x.id}"><img src="${x.img}" alt="${x.alt}"><div><h3>${x.h}</h3><div class="body">${x.p}</div>${x.w?`<div class="whoon" style="margin:14px 0 0"><a href="#people-${slug(x.w)}">${x.w}</a></div>`:''}</div></div>`).join('')}</section>`:'';
  document.getElementById('topic-full').innerHTML=`<article class="full" style="border-bottom:0;margin-bottom:0"><h1>${tp.t||tp.h}</h1>${who}${snav}<div class="body">${tp.b}</div>${sub}</article>`;}
  const pers=h.startsWith('people-')&&document.getElementById('p-'+h.slice(7));
  const ni=h.startsWith('news-')?news.findIndex(n=>n.id===h):-1;
