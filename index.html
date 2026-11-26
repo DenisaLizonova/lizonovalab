@@ -379,7 +379,7 @@ footer a{color:var(--mute)}
 </div>
 <div class="group-h">PhD students</div>
 <div class="grid" id="team-phd"></div>
-<div class="group-h">Master's and bachelor's students</div>
+<div class="group-h">Master's students</div>
 <div class="grid" id="team-st"></div>
 <div class="group-h">Exchange students</div>
 <div class="grid" id="team-ex"></div>
@@ -543,7 +543,7 @@ const ini=n=>n.replace(/^(Ing\.|Bc\.)\s*/,'').split(' ').map(w=>w[0]).slice(0,2)
 const card=(p,role)=>p.n?`<div class="card person" id="p-${slug(p.n)}">${photos[p.n]?`<img class="av" src="${photos[p.n]}" alt="${p.n}" width="60" height="60">`:`<div class="av">${ini(p.n)}</div>`}<div><div class="n">${p.n}</div><div class="r">${role}</div><div class="t">${p.t||'Project to be added'}</div></div></div>`
  :`<div class="card person"><div class="av open">+</div><div><div class="n">Open position</div><div class="r">${role}</div><div class="t">Interested? Get in touch.</div></div></div>`;
 document.getElementById('team-phd').innerHTML=phd.map(p=>card(p,'PhD student')).join('');
-document.getElementById('team-st').innerHTML=st.map(p=>card(p,'Student')).join('');
+document.getElementById('team-st').innerHTML=st.map(p=>card(p,'Master\'s student')).join('');
 document.getElementById('team-ex').innerHTML=ex.map(p=>`<div class="card person" id="p-${slug(p.n)}">${photos[p.n]?`<img class="av" src="${photos[p.n]}" alt="${p.n}" width="60" height="60">`:`<div class="av">${ini(p.n)}</div>`}<div><div class="n">${p.n}</div><div class="r">Exchange student</div><div class="t">${p.t}<br>${p.r}</div></div></div>`).join('');
 
 const ic={
